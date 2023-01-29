@@ -21,15 +21,16 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-5">
-                <form class="form-container">
+                <form class="form-container" action="login" method="post">
                     <div class="form-group">
+                        @csrf
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <div class="input-group">
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" name="password" id="password">
                             <div class="input-group-append">
                                 <button class="btn btn-secondary" type="button" id="show-password-btn">
                                     <i class="fas fa-eye"></i>
@@ -38,7 +39,7 @@
                         </div>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block">login</button>
                 </form>
             </div>
         </div>
