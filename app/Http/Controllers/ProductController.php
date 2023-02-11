@@ -3,11 +3,100 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\ProductModel;
+use App\Models\CartModel;
+use App\Models\OrderModel;
+use Session;
+use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     function index()
     {
-        return "welcome to product page";
+        $data = ProductModel::all();
+        return view('product',['products'=>$data]);
+    }
+    function details($id)
+    {
+        $data = ProductModel::find($id);
+        return view('details', ['details' => $data]);
+    }
+
+    public function search(Request $req)
+    {
+        $data = ProductModel::where('name','like' , '%'.$req->input('query').'%')->get();
+        return view('search',['products'=>$data]);
+        // return $data;
+    }
+
+    function add_to_cart(Request $req)
+    {
+        if($req->session()->has('user'))
+        {
+            $cart = new CartModel;
+            $cart->user_id = $req->session()->get('user')['id'];
+            $cart->product_id = $req->product_id;
+            $cart->save();
+            return redirect('/home');
+        }else{
+            return redirect('/login');
+        }
+       
+    }
+
+    static function cart_item()
+    {
+        $user_id = Session::get('user')['id'];
+        return CartModel::where('user_id', $user_id)->count();
+    }
+
+
+    function cartList()
+    {
+        $user_id = Session::get('user')['id'];;
+        $data = DB::table('cart')
+            ->join('products', 'cart.product_id', 'products.id')
+            ->select('products.*','cart.id as cartId')
+            ->where('cart.user_id', $user_id)
+            ->get();
+        // return $data;
+        return view('cartList', ['products' => $data]); 
+    }
+
+    function removeCart($id)
+    {
+        CartModel::destroy($id);
+        return redirect('cartList');
+    }
+
+    function orderNow()
+    {
+        $user_id = Session::get('user')['id'];
+        $total = DB::table('cart')
+            ->join('products', 'cart.product_id', 'products.id')
+            ->select('products.*','cart.id as cartId')
+            ->where('cart.user_id', $user_id)
+            ->sum('products.price');
+        // return $data;
+        return view('orderNow', ['total' => $total]);    
+    }
+
+    function orderPlace(Request $req)
+    {
+        $user_id = Session::get('user')['id'];
+        $allCart = CartModel::where('user_id', $user_id)->get();
+        foreach($allCart as $cart)
+        {
+            $order = new OrderModel;
+            $order->products_id = $cart['product_id'];
+            $order->user_id = $cart['user_id'];
+            $order->status = 'pending';
+            $order->payment_method = $req->payment;
+            $order->payment_status = 'pending';
+            $order->address = $req->address;
+            $order->save();
+            CartModel::where('user_id', $user_id)->delete();
+            return redirect('/home');
+        }
+      
     }
 }
