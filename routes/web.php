@@ -27,7 +27,7 @@ Route::post("/login", [UserController::class, 'login']);
 Route::get("/home", [ProductController::class, 'index']);
 Route::get("/details/{id}", [ProductController::class,'details']);
 Route::post('search', [ProductController::class, 'search']);
-Route::post('add_to_cart/{id}', [ProductController::class, 'add_to_cart']);
+// Route::post('add_to_cart/{id}', [ProductController::class, 'add_to_cart']);
 Route::get('cartList', [ProductController::class, 'cartList']);
 Route::get('logout', function () {
     Session::forget('user');
@@ -41,7 +41,7 @@ Route::post('register', [UserController::class, 'register']);
 
 Route::view('/register', 'register');
 
-// Route::post('/add_to_cart', [ProductController::class, 'addToCart']);
+ Route::post('/add_to_cart', [ProductController::class, 'addToCart']);
 
 Route::get('/update_cart_count', [ProductController::class, 'updateCartCount']);
 // Route::get('/addProduct', [ProductController::class, 'addProduct']);

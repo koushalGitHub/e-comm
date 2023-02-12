@@ -8,7 +8,7 @@
     <div class="row cartListDivider" style="padding:5px">
         <div class="col-sm-3">
             <a href="details/{{$items->id}}">
-                <img class="img-size" src="{{$items->gallery}}" alt="img">
+                <img class="img-size" src="{{url('uploads/products/' . $items->gallery)}}" alt="img">
             </a>
         </div>
         <div class="col-sm-3">

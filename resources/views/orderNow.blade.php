@@ -45,7 +45,7 @@
     <input type="radio" value="cash" name="payment"><span>Online Payment</span></p>
   </div>
  
-  <button type="submit" class="btn btn-primary">Order Now</button>
+  <input type="submit" class="btn btn-primary" value="Order Now">
 </form>
 
 

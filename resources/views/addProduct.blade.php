@@ -5,6 +5,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <div class="container">
+    <h2 class="success" style="color:green">Product Added Successfully</h2>
     <!-- <form action="/storeProduct" enctype="multipart/form-data" method="post"> -->
     <form enctype="multipart/form-data" method="post">
         @csrf
@@ -37,6 +38,7 @@
 </div>
 <script>
 $(document).ready(function() {
+    $('.success').hide();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -66,9 +68,10 @@ $(document).ready(function() {
             data: formData,
             processData: false,
             contentType: false,
+            
             success: function(data) {
                 // Handle the response from the server
-                alert("Product added successfully");
+               // alert("Product added successfully");
                 $('.success').show();
                 setTimeout(function(){
                     $('.success').hide();

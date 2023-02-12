@@ -68,7 +68,7 @@ class ProductController extends Controller
             $cart->user_id = $request->session()->get('user')['id'];
             $cart->product_id = $product_id;
             $cart->save();
-           
+            return redirect('/home');
         } else {
             return redirect('/login');
         }

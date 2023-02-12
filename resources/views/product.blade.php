@@ -57,12 +57,12 @@
         <div class="trending-items">
             <a href="details/{{$items['id']}}">
                 <img class="img-size" src="{{url('uploads/products/' . $items['gallery'])}}" alt="img">
-            </a>
+            
             <div class="caption">
                 <h5>{{$items['name']}}</h5>
                 <p>{{$items['description']}}</p>
             </div>
-
+            </a>
         </div>
         @endforeach
     </div>
