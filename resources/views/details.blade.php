@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <img class="details_img" src="{{$details['gallery']}}">
+            <img class="details_img" src="{{url('uploads/products/' . $details['gallery'])}}">
         </div>
         <div class="col-sm-6">
                 <a href="/home">Go Back</a>

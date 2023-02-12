@@ -11,12 +11,12 @@ class UserController extends Controller
     function login(Request $req)
     {
         $user =  UserModel::where(['email' => $req->email])->first();
-        if($user || Hash::check($req->password,$user->password))
+        if($user && Hash::check($req->password,$user->password))
         {
             $req->session()->put('user', $user);
             return redirect('/home');
         }else{
-            return "Username  or password is not match";
+            return view('login')->with('error_message', 'Email and password does not match');
         }
     }
 }

@@ -4,16 +4,14 @@
 <html lang="en">
 <head>
     <title>E-comm Project</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+   
 
 </head>
 <style>
 
 </style>
 <body>
-
-
-    <div id="carouselExampleIndicators" class="carousel slide" style="background-color: #172337;       "                    data-ride="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide" style="background-color: #172337;"data-ride="carousel">
             <ol class="carousel-indicators">
             @foreach($products as $key => $items)
             <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
@@ -25,7 +23,7 @@
             @foreach($products as $key => $items)
             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                 <a href="details/{{$items['id']}}">
-                    <img class="img-size" src="{{$items['gallery']}}" alt="...">
+                    <img class="img-size" src="{{url('uploads/products/' . $items['gallery'])}}" alt="...">
                 </a>
                 <div class="carousel-caption">
                     <h5>{{$items['name']}}</h5>
@@ -50,19 +48,15 @@
 </div>
     </div>
     
-                            <form id="search-form">
-                        <input type="text" class="search_box" id="search-input">
-                        <button id="search-icon">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        </form>
-
+    @if (isset($error_message))
+        <h2 style="color: red;">{{ $error_message }}</h2>
+        @endif
     <div class="trending-wrapper">
         <h3>Trending Products</h3>
         @foreach($products as $key => $items)
         <div class="trending-items">
             <a href="details/{{$items['id']}}">
-                <img class="img-size" src="{{$items['gallery']}}" alt="img">
+                <img class="img-size" src="{{url('uploads/products/' . $items['gallery'])}}" alt="img">
             </a>
             <div class="caption">
                 <h5>{{$items['name']}}</h5>

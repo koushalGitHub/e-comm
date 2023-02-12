@@ -41,6 +41,9 @@
                     <br>
                     <button type="submit" class="btn btn-primary btn-block">login</button>
                 </form>
+                @if (isset($error_message))
+            <p style="color: red;">{{ $error_message }}</p>
+        @endif
             </div>
         </div>
     </div>
