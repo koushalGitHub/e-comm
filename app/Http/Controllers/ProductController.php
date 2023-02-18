@@ -146,7 +146,7 @@ class ProductController extends Controller
     }
 
 
-    function myOrders()
+    function myOrder()
     {
         $user_id = Session::get('user')['id'];
         $order = DB::table('orders')
@@ -155,7 +155,7 @@ class ProductController extends Controller
             ->where('orders.user_id', $user_id)
             ->get();
         // return $total;
-        return view('myOrder', ['order' => $order]);
+        return view('myOrders', ['order' => $order]);
 
     }
 

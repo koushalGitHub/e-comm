@@ -67,7 +67,7 @@ if(Session::has('user'))
                     <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/myOrders">Order</a>
+                    <a class="nav-link" href="/myOrder">Order</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/addProduct">Add Product</a>

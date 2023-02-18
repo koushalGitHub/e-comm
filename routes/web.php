@@ -36,7 +36,7 @@ Route::get('logout', function () {
 Route::get('removeCart/{id}', [ProductController::class, 'removeCart']);
 Route::get('orderNow', [ProductController::class, 'orderNow']);
 Route::post('orderPlace', [ProductController::class, 'orderPlace']);
-Route::get('myOrders', [ProductController::class, 'myOrders']);
+Route::get('myOrder', [ProductController::class, 'myOrder']);
 Route::post('register', [UserController::class, 'register']);
 
 Route::view('/register', 'register');

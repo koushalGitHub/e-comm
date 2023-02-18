@@ -26,7 +26,7 @@
     </div>
     @endforeach
 </div>
-<a class="btn btn-success" href="orderNow">Oder Now</a>
+<!-- <a class="btn btn-success" href="orderNow">Oder Now</a> -->
 <div id="result"></div>
 </body>
 </html>
