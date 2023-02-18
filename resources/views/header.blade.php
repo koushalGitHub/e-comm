@@ -55,7 +55,7 @@ if(Session::has('user'))
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-primary bg-primary">
-        <a class="nav-link" href="/home">Kk-Mart</a>
+        <a class="nav-link" style="color:white" href="/home">Kk-Mart</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -79,11 +79,11 @@ if(Session::has('user'))
                 @endif
                 @if(!Session::has('user'))
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" style="color:white" href="/login">Login</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
+                    <a class="nav-link" style="color:white" href="/register">Register</a>
                 </li>@endif
 
                 @if(Session::has('user'))

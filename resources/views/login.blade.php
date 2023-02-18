@@ -19,6 +19,11 @@
 
 <body>
     <div class="container">
+    @if (isset($_message))
+        <div class="row justify-content-center">
+            <h3 style="color: green;">{{ $_message }}</h3>
+        </div>
+        @endif
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 col-xl-5">
                 <form class="form-container" action="login" method="post">
