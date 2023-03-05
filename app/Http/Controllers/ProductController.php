@@ -165,7 +165,7 @@ class ProductController extends Controller
     }
 
 
-    public function store(Request $request)
+     public function store1(Request $request)
     {
         $product = new ProductModel;
         $product->name = $request->input('name');
@@ -173,8 +173,8 @@ class ProductController extends Controller
         $product->category = $request->input('category');
         $product->price = $request->input('price');
 
-        if ($request->hasFile('gallery')) {
-            $file = $request->file('gallery');
+        if ($request->hasFile('images')) {
+            $file = $request->file('images');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $file->move('uploads/products/', $filename);
@@ -187,6 +187,31 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('/home')->with('success', 'Product added successfully');
+    } 
+
+
+
+    public function store(Request $request)
+    {
+
+        $product = new ProductModel;
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->category = $request->input('category');
+        $product->price = $request->input('price');
+        $files = $request->file('images');
+        $gallery = [];
+        foreach ($files as $file) {
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/products/', $filename);
+            $gallery[] = $filename;
+            // $product->gallery = $filename;
+            
+    }
+    $product->gallery = json_encode($gallery);
+    $product->save();
+    return response()->json(['success'=>'Files uploaded successfully.']);
     }
 
 

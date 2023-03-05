@@ -1,27 +1,34 @@
 @extends('master')
 @section("content")
-
-<div class="container">
-    <?php dd($order);  ?>
-    <div class="row">
-        <div class="col-sm-6">
-            <img class="details_img" src="{{url('uploads/products/' . $order['gallery'])}}">
+<div class="trending-wrapper">
+    <h2>Products Order List</h2>
+   
+    <br><br>
+    @foreach($order as $key => $items)
+    <div class="row cartListDivider" style="padding:5px">
+        <div class="col-sm-3">
+            <a href="details/{{$items->id}}">
+                <img class="img-size" src="{{url('uploads/products/' . $items->gallery)}}" alt="img">
+            </a>
         </div>
-        <div class="col-sm-6">
-                <a href="/home">Go Back</a>
-                <h2>{{$order['name']}}</h2>
-                <h3>Price : {{$order['price']}}</h3>
-                <h3>Details : {{$order['description']}}</h3>
-                <h3>category : {{$order['category']}}</h3>
-                <br><br>  
-                <form action="/add_to_cart" method="post">
-                    @csrf
-                    <input type="hidden" name="product_id" value="{{$order['id']}}">
-                    <input type="submit" class="btn btn-primary" value="Add to Cart">
-            </form>
-                <br><br>
-                <button class="btn btn-success">Buy Now</button>
+        <div class="col-sm-3">
+            <a href="details/{{$items->id}}">
+                <div class="caption" style="text-align:center;">
+                    <h5>Name : {{$items->name}}</h5>
+                    <p>Price : {{$items->price}}</p>
+                    <p>Delivery status : {{$items->status}}</p>
+                    <p>Payment Status : {{$items->payment_status}}</p>
+                    <p>Payment Method : {{$items->payment_method}}</p>
+                    <p>Delivery Address : {{$items->address}}</p>
+                </div>
+            </a>
         </div>
+       
     </div>
+    @endforeach
 </div>
+
+<div id="result"></div>
+</body>
+</html>
 @endsection
