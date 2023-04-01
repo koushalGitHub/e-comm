@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,7 @@ Route::post('/storeProduct', [ProductController::class, 'store']);
 Route::get('addProduct', function () {
     return view('addProduct');
 });
+
+Route::get('Payment',[PaymentController::class,'pay']);
+Route::view('/paymentSuccess', 'paymentSuccess');
+Route::post('/paymentForm', [PaymentController::class,'paymentForm']);

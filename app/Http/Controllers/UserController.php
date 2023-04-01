@@ -45,4 +45,7 @@ class UserController extends Controller
         }
         
     }
+    function pay(){
+        return view('rozarPay');
+    }
 }
