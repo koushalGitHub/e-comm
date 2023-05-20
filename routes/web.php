@@ -56,3 +56,10 @@ Route::get('addProduct', function () {
 Route::get('Payment',[PaymentController::class,'pay']);
 Route::view('/paymentSuccess', 'paymentSuccess');
 Route::post('/paymentForm', [PaymentController::class,'paymentForm']);
+Route::get('/viewMore', [UserController::class,'viewMore']);
+
+// Route::get('/loadmore', 'LoadMoreController@index');
+Route::post('/loadmore/load_data', [UserController::class,'load_data'])->name('loadmore.load_data');
+Route::get('sendMail', function () {
+    return view('sendMail');
+});
